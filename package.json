@@ -2,7 +2,7 @@
   "name": "projeto22-quer-apostar-quanto",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "tsc --project tsconfig.build.json && tsc-alias",
     "start": "prisma migrate deploy && node dist/src/server.js",

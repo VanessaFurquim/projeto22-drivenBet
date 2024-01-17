@@ -1,0 +1,3 @@
+> add files .txt to .gitignore;
+> check "main" (entry point) path on package.json;
+> protocols.ts ?;
