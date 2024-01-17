@@ -1,8 +1,7 @@
-import { BodyInputParticipant } from '@/protocols';
-//import { Participant } from '@prisma/client';
-import joi from 'joi';
+import { ParticipantInputBody } from "@/protocols";
+import joi from "joi";
 
-export const inputParticipantSchema = joi.object<BodyInputParticipant>({
+export const participantInputSchema = joi.object<ParticipantInputBody>({
   name: joi.string().required(),
   balance: joi.number().required()
 });

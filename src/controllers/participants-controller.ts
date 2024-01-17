@@ -1,13 +1,11 @@
-import { BodyInputParticipant } from '@/protocols';
-import { participantsService } from '@/services/participants-service';
-import { Participant } from '@prisma/client';
-//revisit: import { Participant } from '@prisma/client';
-import { Request, Response } from 'express';
-import httpStatus from 'http-status';
+import { ParticipantInputBody } from "@/protocols";
+import { participantsService } from "@/services/participants-service";
+import { Participant } from "@prisma/client";
+import { Request, Response } from "express";
+import httpStatus from "http-status";
 
-//pending: type function
 export async function createNew(request: Request, response: Response): Promise<void> {
-    const { name, balance } = request.body as BodyInputParticipant;
+    const { name, balance } = request.body as ParticipantInputBody;
   
     const participant: Participant = await participantsService.createNew(name, balance);
   

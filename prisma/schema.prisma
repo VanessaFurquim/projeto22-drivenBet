@@ -10,7 +10,7 @@ datasource db {
 model Participant {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime @default(now())
   name      String
   balance   Int
   Bet       Bet[]    @relation("participantsBets")
@@ -21,12 +21,12 @@ model Participant {
 model Game {
   id            Int      @id @default(autoincrement())
   createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  updatedAt     DateTime @default(now())
   homeTeamName  String
   awayTeamName  String
-  homeTeamScore Int
-  awayTeamScore Int
-  isFinished    Boolean
+  homeTeamScore Int      @default(0)
+  awayTeamScore Int      @default(0)
+  isFinished    Boolean  @default(false)
   Bet           Bet[]    @relation("betsOnGame")
 
   @@map("games")
@@ -35,7 +35,7 @@ model Game {
 model Bet {
   id            Int         @id @default(autoincrement())
   createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @updatedAt
+  updatedAt     DateTime    @default(now())
   homeTeamScore Int
   awayTeamScore Int
   amountBet     Int

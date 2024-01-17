@@ -1,6 +1,7 @@
 import prisma from "@/database/databaseConnection";
+import { Participant } from "@prisma/client";
 
-async function insertNew(name: string, balance: number) {
+async function insertNew(name: string, balance: number): Promise<Participant> {
   const participant = await prisma.participant.create({
     data: {
       name,
@@ -11,7 +12,7 @@ async function insertNew(name: string, balance: number) {
   return participant;
 };
   
-async function selectAll() {
+async function selectAll(): Promise<Participant[]> {
   const participants = await prisma.participant.findMany();
 
   return participants;

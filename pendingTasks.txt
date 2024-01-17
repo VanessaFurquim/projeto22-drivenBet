@@ -1,3 +1,6 @@
 > add files .txt to .gitignore;
 > check "main" (entry point) path on package.json;
 > protocols.ts ?;
+> check constraits games table (scores);
+> erase this file from GitHub;
+> dump.sql;

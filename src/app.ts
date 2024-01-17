@@ -3,6 +3,7 @@ import 'express-async-errors';
 import httpStatus from 'http-status';
 import participantsRouter from './routers/participants-router';
 import errorHandlingMiddleware from './middlewares/errorHandler-middleware';
+import gamesRouter from './routers/games-router';
 
 const app = express();
 
@@ -13,7 +14,8 @@ app.get('/health', (request: Request, response: Response) => {
   return response.status(httpStatus.OK).send("I'm ok!");
 });
 
-app.use('/participants', participantsRouter);
+app.use("/participants", participantsRouter);
+app.use("/games", gamesRouter);
 app.use(errorHandlingMiddleware);
 
 export default app;
