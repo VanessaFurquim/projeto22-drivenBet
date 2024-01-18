@@ -12,15 +12,23 @@ export default function errorHandlingMiddleware(
   next: NextFunction, // eslint-disable-line @typescript-eslint/no-unused-vars
 ) {
 
-  if (error.name === "notFoundError") {
-    return response.status(httpStatus.NOT_FOUND).send(error.message);
-  };
+  // if (error.name === "notFoundError") {
+  //   return response.status(httpStatus.NOT_FOUND).send(error.message);
+  // };
 
-  if (error.name === "invalidIdError") {
+  if (error.name === "InvalidIdError") {
     return response.status(httpStatus.UNPROCESSABLE_ENTITY).send(error.message);
   };
 
-  if (error.name === "balanceError") {
+  if (error.name === "InsufficientBalanceError") {
+    return response.status(httpStatus.UNPROCESSABLE_ENTITY).send(error.message);
+  };
+
+  if (error.name === "GameIsOverError") {
+    return response.status(httpStatus.UNPROCESSABLE_ENTITY).send(error.message);
+  };
+
+  if (error.name === "InvalidBetAmountError") {
     return response.status(httpStatus.UNPROCESSABLE_ENTITY).send(error.message);
   };
 

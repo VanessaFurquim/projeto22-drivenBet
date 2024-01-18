@@ -7,7 +7,7 @@ import httpStatus from "http-status";
 export async function createNew(request: Request, response: Response): Promise<void> {
     const { homeTeamName, awayTeamName } = request.body as GameInputBody;
   
-    const game = await gamesService.createNew(homeTeamName, awayTeamName);
+    const game: Game = await gamesService.createNew(homeTeamName, awayTeamName);
   
     response.status(httpStatus.CREATED).send(game);
 };

@@ -4,8 +4,8 @@ import { Game } from "@prisma/client";
 async function insertNew(homeTeamName: string, awayTeamName: string): Promise<Game> {
   const game: Game = await prisma.game.create({
     data: {
-        homeTeamName,
-        awayTeamName
+      homeTeamName,
+      awayTeamName
     }
   });
 
@@ -19,6 +19,6 @@ async function selectAll(): Promise<Game[]> {
 };
   
 export const gamesRepository = {
-    insertNew,
-    selectAll
+  insertNew,
+  selectAll
 };

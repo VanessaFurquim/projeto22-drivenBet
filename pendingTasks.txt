@@ -4,3 +4,6 @@
 > check constraits games table (scores);
 > erase this file from GitHub;
 > dump.sql;
+> CAREFUL WHEN TURNING PROJECT IN: change project number to 23;
+> fix routers' imports on app.ts (not path-mapped);
+> set only to "PENDING", "WON", or "LOST" the status value in bets table;

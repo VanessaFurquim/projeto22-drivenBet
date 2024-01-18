@@ -1,9 +1,10 @@
-import express, { json, Request, Response } from 'express';
-import 'express-async-errors';
-import httpStatus from 'http-status';
-import participantsRouter from './routers/participants-router';
-import errorHandlingMiddleware from './middlewares/errorHandler-middleware';
-import gamesRouter from './routers/games-router';
+import express, { json, Request, Response } from "express";
+import "express-async-errors";
+import httpStatus from "http-status";
+import participantsRouter from "./routers/participants-router";
+import gamesRouter from "./routers/games-router";
+import betsRouter from "./routers/bets-router";
+import errorHandlingMiddleware from "./middlewares/errorHandler-middleware";
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.get('/health', (request: Request, response: Response) => {
 
 app.use("/participants", participantsRouter);
 app.use("/games", gamesRouter);
+app.use("/bets", betsRouter);
 app.use(errorHandlingMiddleware);
 
 export default app;

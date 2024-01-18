@@ -1,9 +1,9 @@
-import { balanceError } from "@/errors/balance-error";
+import { insufficientBalanceError } from "@/errors/insufficientBalance-error";
 import { participantsRepository } from "@/repositories/participants-repository";
 import { Participant } from "@prisma/client";
 
 async function createNew(name: string, balance: number): Promise<Participant> {
-    if (balance < 1000) throw balanceError();
+if (balance < 1000) throw insufficientBalanceError({ messageComplement: "You must have a balance of at least R$10,00 to continue." });
 
     const participant: Participant = await participantsRepository.insertNew(name, balance);
 
