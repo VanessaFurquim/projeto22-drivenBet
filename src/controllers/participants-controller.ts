@@ -1,4 +1,4 @@
-import { ParticipantInputBody } from "@/protocols";
+import { ParticipantInputBody } from "@/utils/protocols";
 import { participantsService } from "@/services/participants-service";
 import { Participant } from "@prisma/client";
 import { Request, Response } from "express";

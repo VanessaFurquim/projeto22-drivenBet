@@ -13,7 +13,14 @@ async function listAll() {
     return games;
 };
 
+async function listgameWithBets(gameId: number) {
+    const gameWithBets = await gamesRepository.selectGameWithBets(gameId);
+
+    return gameWithBets;
+};
+
 export const gamesService = {
     createNew,
-    listAll
+    listAll,
+    listgameWithBets
 };

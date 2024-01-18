@@ -1,4 +1,4 @@
-import { BetInputBody } from "@/protocols";
+import { BetInputBody } from "@/utils/protocols";
 import joi from "joi";
 
 export const betInputSchema = joi.object<BetInputBody>({ 

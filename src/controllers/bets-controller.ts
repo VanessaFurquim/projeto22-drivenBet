@@ -1,4 +1,4 @@
-import { BetInputBody } from "@/protocols";
+import { BetInputBody } from "@/utils/protocols";
 import { betsRepository } from "@/repositories/bets-repository";
 import { betsService } from "@/services/bets-service";
 import { Bet } from "@prisma/client";

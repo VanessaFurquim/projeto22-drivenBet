@@ -1,4 +1,4 @@
-import { GameInputBody } from "@/protocols";
+import { GameInputBody } from "@/utils/protocols";
 import { gamesService } from "@/services/games-service";
 import { Game } from "@prisma/client";
 import { Request, Response } from "express";
@@ -19,9 +19,10 @@ export async function listAll(request: Request, response: Response): Promise<voi
 };
 
 export async function listOne(request: Request, response: Response): Promise<void> {
-    const games: Game[] = await gamesService.listAll();
+    const { gameId } = request.body;
+    const gameWithBets = await gamesService.listgameWithBets(gameId);
   
-    response.status(httpStatus.OK).send(games);
+    response.status(httpStatus.OK).send(gameWithBets);
 };
 
 export const gamesController = {
