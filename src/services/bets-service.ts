@@ -1,4 +1,4 @@
-import { gameIsOverError } from "@/errors/gameIsOver-error";
+import { isGameOverError } from "@/errors/isGameOver-error";
 import { insufficientBalanceError } from "@/errors/insufficientBalance-error";
 import { invalidBetAmountError } from "@/errors/invalidBetAmount-error";
 import { BetInputBody } from "@/utils/protocols";
@@ -29,7 +29,7 @@ async function isGameOver(betData: BetInputBody): Promise<void> {
     const { gameId } = betData;
 
     const isGameFinished: boolean = await betsRepository.selectGameStatus(gameId)
-    if (isGameFinished === true) throw gameIsOverError();
+    if (isGameFinished === true) throw isGameOverError("already over. Choose an ongoing game to place your bet.");
 };
 
 export const betsService = {

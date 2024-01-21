@@ -12,12 +12,9 @@ export default function errorHandlingMiddleware(
   next: NextFunction, // eslint-disable-line @typescript-eslint/no-unused-vars
 ) {
 
-  // if (error.name === "notFoundError") {
-  //   return response.status(httpStatus.NOT_FOUND).send(error.message);
-  // };
 
   if (error.name === "InvalidIdError") {
-    return response.status(httpStatus.UNPROCESSABLE_ENTITY).send(error.message);
+    return response.status(httpStatus.NOT_FOUND).send(error.message);
   };
 
   if (error.name === "InsufficientBalanceError") {
@@ -30,6 +27,10 @@ export default function errorHandlingMiddleware(
 
   if (error.name === "InvalidBetAmountError") {
     return response.status(httpStatus.UNPROCESSABLE_ENTITY).send(error.message);
+  };
+
+  if (error.name === "NoBetsPlacedError") {
+    return response.status(httpStatus.BAD_REQUEST).send(error.message);
   };
 
   return response.status(httpStatus.INTERNAL_SERVER_ERROR).send(console.log("error: ", error));

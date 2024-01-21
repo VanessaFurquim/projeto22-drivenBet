@@ -1,6 +1,5 @@
 > add files .txt to .gitignore;
 > check "main" (entry point) path on package.json;
-> protocols.ts ?;
 > check constraits games table (scores);
 > erase this file from GitHub;
 > dump.sql;
@@ -11,4 +10,51 @@
 > check spread sheet for criteria;
 > TESTS;
 > DEPLOY;
+> README (artigo boas práticas GitHub, usar Swagger);
 > check project 23;
+> check typeing in all variables and functions in all files;
+> type error functions and parameters;
+> index.router.ts;
+> change port;
+> optimize finish function to com complex queries and less loopings;
+> refactor: use selectOneWithBets in finishGame;
+
+
+
+se o participantId estiver em winningParticipants, atualizar o balance
+    else só atualiza em bets
+    
+    await gamesRepository.updateParticipantBalance();
+    
+
+    ATUALIZAR APOSTAS:
+    acessar tabela bets, pelo gameId, e ver quais bets têm aquele gameId
+         > prisma.bets.findMany where gameId include game true
+    apostas vencedoras (winningBets) -> if bet.homeTeamScore === finalScore.homeTeamScore && bet.awayTeamScore === finalScore.awayTeamScore
+    mudar status para "WON" else "LOST"
+    pegar valores de bet.amountBet e somar -> sumBetsWon
+    atribuir valor a amountWon -> winningBetsEarnings = Math.floor(amountWon = (amountBet / sumBetsWon) * totalAllBets * (1 - houseRake))
+    else amountWon = 0
+    e atribuir valor de amountWon em balance de participant em game (participantId)
+    if winningBets { soma em winningBetsTotal, status = "WON", amountWon = winningBetsEarnings, balance = currentBalance + winningBetsEarnings } else { soma em totalAllBets, status = "LOST", amountWon = 0 }
+
+    o loop vai passar por cada bet no array vindo da requisição e:
+    > comparar scores: if bet.homeTeamScore === finalScore.homeTeamScore && bet.awayTeamScore === finalScore.awayTeamScore
+    > se true, é winningBet -> armazenar no array winningBetsArray
+                            -> pegar amountBet e somar em winningBetsTotal e somar em totalAllBets
+                            -> atualizar balance do participantId para currentBalance + winningBetsEarnings
+                            -> mudar status para "WON"
+                            -> atualizar amountWon para winningBetsEarnings = Math.floor(amountWon = (amountBet / winningBetsTotal) * totalAllBets * (1 - houseRake))
+    else: é loosingBet      -> armazenar no array loosingBetsArray
+                            -> pegar amountBet e somar em totalAllBets
+                            -> mudar status para "LOST"
+                            -> mudar amountWon para 0
+
+> export function init(): Promise<Express> {
+  connectDb();
+  return Promise.resolve(app);
+  }
+
+  export async function close(): Promise<void> {
+    await disconnectDB();
+  }

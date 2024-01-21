@@ -8,6 +8,6 @@ const gamesRouter: Router = Router();
 gamesRouter.post("/", validateSchemaMiddleware(gameInputSchema), gamesController.createNew);
 gamesRouter.get("/", gamesController.listAll);
 gamesRouter.get("/:id", gamesController.listOne);
-// gamesRouter.get("/:id/finish", gamesController.listOne);
+gamesRouter.post("/:id/finish", gamesController.finishGame);
 
 export default gamesRouter;

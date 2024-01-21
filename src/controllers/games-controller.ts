@@ -1,4 +1,4 @@
-import { GameInputBody } from "@/utils/protocols";
+import { FinalScoreInputBody, GameInputBody } from "@/utils/protocols";
 import { gamesService } from "@/services/games-service";
 import { Game } from "@prisma/client";
 import { Request, Response } from "express";
@@ -19,14 +19,25 @@ export async function listAll(request: Request, response: Response): Promise<voi
 };
 
 export async function listOne(request: Request, response: Response): Promise<void> {
-    const { gameId } = request.body;
-    const gameWithBets = await gamesService.listgameWithBets(gameId);
+    const gameId: number = request.body.gameId;
+
+    const gameWithBets = await gamesService.listOneWithBets(gameId);
   
     response.status(httpStatus.OK).send(gameWithBets);
+};
+
+export async function finishGame(request: Request, response: Response): Promise<void> {
+    const gameId: number = parseInt(request.params.id);
+    const { homeTeamScore, awayTeamScore } = request.body as FinalScoreInputBody;
+
+    const finishedGame = await gamesService.finishOne(gameId, { homeTeamScore, awayTeamScore });
+
+    response.status(httpStatus.OK).send(finishedGame);
 };
 
 export const gamesController = {
     createNew,
     listAll,
-    listOne
+    listOne,
+    finishGame
 };
