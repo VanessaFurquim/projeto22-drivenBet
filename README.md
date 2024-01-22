@@ -10,7 +10,7 @@ click the link to access the application on your browser: [DrivenBet](https://dr
 
 ## 3. Description
 
-Once a sports event is registered into the system, while ongoing, the participants can place their bets on the final score. When the game is finalized, the scores are updated and the bets are processed, determening the winners, their eranings, and their final balance.
+Once a sports event is registered into the system, while ongoing, the participants can place their bets on the final score. When the game is finalized, the scores are updated and the bets are processed, determining the winners, their earnings, and their final balance.
 
 ### Participant Management:
 
@@ -194,12 +194,12 @@ Once a sports event is registered into the system, while ongoing, the participan
 
 You can operate on databases for different environments, but it is necessary to populate the correct env variables for each environment first.
 1. Before running migrations, make sure you have a PostgreSQL database running based on the **.env.example** file for each environment.
-2. Create the environment vabiables in their respective .env files:
+2. Create the environment variables in their respective .env files:
     - .env: `DATABASE_URL=postgres://USERNAME:PASSWROD@localhost:5432/NAME-OF-DATABASE`
 
     - .env.test: `DATABASE_URL=postgres://USERNAME:PASSWORD@localhost:5432/NAME-OF-DATABASE-TEST`
 
-3. In the terminal, run command to install all dependencies and configurate prisma:
+3. In the terminal, run the command to install all dependencies and configure prisma:
     ```bash
     $ npm run pre:build
     ```
@@ -207,11 +207,11 @@ You can operate on databases for different environments, but it is necessary to 
     ```bash
     $ npm run pre:build
     ```
-5. Migrate for test envoronment:
+5. Migrate for test environment:
     ```bash
     $ npm run dev:migration:run
     ```
-6. Migrate for test envoronment:
+6. Migrate for test environment:
     ```bash
     $ npm run test:migration:run
     ```
@@ -222,15 +222,15 @@ You can operate on databases for different environments, but it is necessary to 
 
 ## 4. How To Run Tests:
 
-- In the terminal, run command for all testing suites:
+- In the terminal, run the command for all testing suites:
     ```bash
     $ npm run test
     ```
-- In the terminal, run command for coverage report:
+- In the terminal, run the command for coverage report:
     ```bash
     $ npm run test:coverage
     ```
-- In the terminal, run command for detailed test report:
+- In the terminal, run the command for a detailed test report:
     ```bash
     $ npm run test:report
     ```
