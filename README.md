@@ -6,7 +6,7 @@ This is a backend application of a bet-managing system that allows a betting hou
 
 ## 2. Deploy
 
-click the link to access the application on your browser: [Deploy link](https://drivenbet-quer-apostar-quanto.onrender.com)
+click the link to access the application on your browser: [DrivenBet](https://drivenbet-quer-apostar-quanto.onrender.com)
 
 ## 3. Description
 
