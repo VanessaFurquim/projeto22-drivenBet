@@ -1,7 +1,7 @@
 import prisma from "@/database/databaseConnection";
 import { noBetsPlacedError } from "@/errors/noBetsPlaced-error";
 import { FinalScoreInputBody } from "@/utils/protocols";
-import { Bet, Game, Participant } from "@prisma/client";
+import { Bet, Game } from "@prisma/client";
 
 async function insertNew(homeTeamName: string, awayTeamName: string): Promise<Game> {
   const game: Game = await prisma.game.create({

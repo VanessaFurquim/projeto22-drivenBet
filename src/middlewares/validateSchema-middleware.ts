@@ -7,7 +7,7 @@ export function validateSchemaMiddleware(schema: ObjectSchema) {
     const validation = schema.validate(request.body);
 
     if (validation.error) {
-      return response.status( httpStatus.UNPROCESSABLE_ENTITY ).send( { error: validation.error.message } );
+      return response.status( httpStatus.UNPROCESSABLE_ENTITY).send( { error: validation.error.message } );
     };
 
     next();

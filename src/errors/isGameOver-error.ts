@@ -1,6 +1,6 @@
-export function isGameOverError(messageComplement: string) {
+export function isGameOverError( { messageComplement } ) {
     return {
-      name: "GameIsOverError",
-      message: `The game you selected is ${messageComplement}`
+        name: "GameIsOverError",
+        message: `The game you selected is ${messageComplement}`
     };
-  };
+};

@@ -18,6 +18,18 @@
 > change port;
 > optimize finish function to com complex queries and less loopings;
 > refactor: use selectOneWithBets in finishGame;
+> treat unique participant name;
+> when running the bet tests, the balance is getting smaller participantsFactory > successful response in bets.test.ts > test database;
+> check math result for bet calculations;
+> tests don't run individually when calling only one (npm run test health.test.ts or npm run test health);
+> import of helpers for tests failing (not always);
+> participants.test.ts error: 404 test is returning an empty object instead of an emprty array, but the ThunderClient test returns an empty array and the condition of participants.length === 0 works, confirming it returns [] and not {}. Couldn't apply following tests:
+        expect(response.body).toEqual([]);
+        expect(response.body).toBeInstanceOf(Array);
+        expect(response.body).toHaveLength(0);
+> testApi.post(`${route}/${game.id}/finish`): treat error of gameId === NaN;
+
+
 
 
 
@@ -25,7 +37,6 @@ se o participantId estiver em winningParticipants, atualizar o balance
     else só atualiza em bets
     
     await gamesRepository.updateParticipantBalance();
-    
 
     ATUALIZAR APOSTAS:
     acessar tabela bets, pelo gameId, e ver quais bets têm aquele gameId

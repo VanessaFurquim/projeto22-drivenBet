@@ -4,6 +4,8 @@ import { gamesRepository } from "@/repositories/games-repository";
 import { FinalScoreInputBody, WinningBetsEarningsArray } from "@/utils/protocols";
 import { Bet, Game } from "@prisma/client";
 import { noBetsPlacedError } from "@/errors/noBetsPlaced-error";
+import { noResultError } from "@/errors/noResults-error";
+import { insufficientDataError } from "@/errors/insufficientData-error";
 
 async function createNew(homeTeamName: string, awayTeamName: string): Promise<Game> {
     const game: Game = await gamesRepository.insertNew(homeTeamName, awayTeamName);
@@ -14,16 +16,24 @@ async function createNew(homeTeamName: string, awayTeamName: string): Promise<Ga
 async function listAll(): Promise<Game[]> {
     const games: Game[] = await gamesRepository.selectAll();
 
+    if(games.length === 0) throw noResultError( { messageComplement: "games" } );
+
     return games;
 };
 
 async function listOneWithBets(gameId: number): Promise<Game & { Bet: Bet[] }> {
+    if (!gameId) throw insufficientDataError( { messageComplement: "a game ID" } );
+    
     const gameWithBets: Game & { Bet: Bet[] } = await gamesRepository.selectOneWithBets(gameId);
+
+    if(!gameWithBets.id) throw invalidIdError( { messageComplement: "Game", id: gameId } );    
 
     return gameWithBets;
 };
 
 async function finishOne(gameId: number, { homeTeamScore, awayTeamScore }: FinalScoreInputBody): Promise<Game> {
+    if (!gameId || gameId === undefined) throw insufficientDataError( { messageComplement: "a game ID" } );
+
     const game: Game = await verifyGameConditions(gameId);
     const bets: Bet[] = await verifyBetsOnGame(gameId);
 
@@ -47,10 +57,12 @@ async function finishOne(gameId: number, { homeTeamScore, awayTeamScore }: Final
 };
 
 async function verifyGameConditions(gameId: number): Promise<Game> {
+    if (!gameId) throw insufficientDataError( { messageComplement: "a game ID" } );
+
     const game: Game = await gamesRepository.selectOneById(gameId);
     
     if (!game) throw invalidIdError({ messageComplement: "Game", id: gameId });
-    if (game.isFinished !== false) throw isGameOverError("is already flagged as being finished. Select an ongoing game.");
+    if (game.isFinished !== false) throw isGameOverError( { messageComplement: "is already flagged as being finished. Select an ongoing game." } );
 
     return game;
 };

@@ -1,4 +1,5 @@
 import { insufficientBalanceError } from "@/errors/insufficientBalance-error";
+import { noResultError } from "@/errors/noResults-error";
 import { participantsRepository } from "@/repositories/participants-repository";
 import { Participant } from "@prisma/client";
 
@@ -13,6 +14,8 @@ if (balance < 1000) throw insufficientBalanceError({ messageComplement: "You mus
 async function listAll(): Promise<Participant[]> {
 
     const participants: Participant[] = await participantsRepository.selectAll();
+
+    if(participants.length === 0) throw noResultError( { messageComplement: "participants" } );
 
     return participants;
 };

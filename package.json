@@ -10,6 +10,11 @@
     "dev": "nodemon src/server.ts",
     "migration:run:dev": "npx prisma migrate dev",
     "migration:run:deploy": "npx prisma migrate deploy",
+    "dev:load-envs": "dotenv -e .env.development",
+    "test:load-envs": "dotenv -e .env.test",
+    "test": "dotenv -e .env.test prisma migrate deploy && dotenv -e .env.test jest -- --runInBand",
+    "test:coverage": "npm run test:load-envs -- jest -- --coverage --runInBand",
+    "test:report": "dotenv -e .env.test prisma migrate deploy & dotenv -e .env.test jest -- --coverage --runInBand --coverageReporters=json-summary --coverageDirectory=coverage --collectCoverageFrom='**/*.ts'"
     },
   "keywords": [],
   "author": "",

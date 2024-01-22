@@ -13,7 +13,7 @@ async function insertNew(name: string, balance: number): Promise<Participant> {
 };
   
 async function selectAll(): Promise<Participant[]> {
-  const participants = await prisma.participant.findMany();
+  const participants: Participant[] = await prisma.participant.findMany();
 
   return participants;
 };

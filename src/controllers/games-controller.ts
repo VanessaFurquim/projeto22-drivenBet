@@ -19,7 +19,7 @@ export async function listAll(request: Request, response: Response): Promise<voi
 };
 
 export async function listOne(request: Request, response: Response): Promise<void> {
-    const gameId: number = request.body.gameId;
+    const gameId: number = parseInt(request.params.id);
 
     const gameWithBets = await gamesService.listOneWithBets(gameId);
   

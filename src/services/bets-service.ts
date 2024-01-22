@@ -19,7 +19,7 @@ async function createNew(betData: BetInputBody) {
 async function checkingBetAmountAndBalance(betData: BetInputBody): Promise<void> {
     const { participantId, amountBet } = betData;
 
-    if (amountBet === 0) throw invalidBetAmountError(amountBet);
+    if (amountBet <= 0) throw invalidBetAmountError(amountBet);
 
     const participantsBalance: number = await betsRepository.selectBalance(participantId);
     if (participantsBalance < amountBet) throw insufficientBalanceError( { messageComplement: "The bet amount you are trying to place is greater than your current balance." } );
@@ -29,7 +29,7 @@ async function isGameOver(betData: BetInputBody): Promise<void> {
     const { gameId } = betData;
 
     const isGameFinished: boolean = await betsRepository.selectGameStatus(gameId)
-    if (isGameFinished === true) throw isGameOverError("already over. Choose an ongoing game to place your bet.");
+    if (isGameFinished === true) throw isGameOverError( { messageComplement: "already over. Choose an ongoing game to place your bet." } );
 };
 
 export const betsService = {
